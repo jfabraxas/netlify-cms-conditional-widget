@@ -2,7 +2,7 @@
   "name": "netlify-cms-widget-conditional",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://jfabraxas@github.com/jfabraxas/netlify-cms-conditional-widget.git",
+  "repository": "https://jfabraxas@github.com/jfabraxas/netlify-cms-widget-conditional.git",
   "author": "jfa <git@jonathanallenberg.de>",
   "license": "MIT",
   "devDependencies": {
