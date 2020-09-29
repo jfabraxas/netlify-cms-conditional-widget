@@ -1,8 +1,11 @@
 {
-  "name": "netlify-cms-widget-conditional",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://jfabraxas@github.com/jfabraxas/netlify-cms-widget-conditional.git",
+  "name": "@jfa/netlify-cms-widget-conditional",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jfabraxas@github.com/jfabraxas/netlify-cms-widget-conditional.git"
+  },
   "author": "jfa <git@jonathanallenberg.de>",
   "license": "MIT",
   "devDependencies": {
@@ -19,9 +22,7 @@
     "immutable": "^3.8.2",
     "netlify-cms-core": "^2.0.0 | ^1.0.0",
     "netlify-cms-ui-default": "^2.11.6",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-immutable-proptypes": "^2.2.0"
+    "react": "^16"
   },
   "dependencies": {
     "@emotion/core": "^10.0.35",
@@ -32,5 +33,18 @@
   "scripts": {
     "build": "tsc -p ./",
     "prepublishOnly": "tsc -p ./"
+  },
+  "description": "A Conditional Widget for NetlifyCMS",
+  "bugs": {
+    "url": "https://github.com/jfabraxas/netlify-cms-widget-conditional/issues"
+  },
+  "homepage": "https://github.com/jfabraxas/netlify-cms-widget-conditional#readme",
+  "keywords": [
+    "netlify-cms",
+    "react",
+    "typescript"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
