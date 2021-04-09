@@ -1,18 +1,30 @@
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { ClassNames } from '@emotion/core'
-import { ObjectWidgetTopBar, lengths, colors, reactSelectStyles } from 'netlify-cms-ui-default'
+import {
+  ObjectWidgetTopBar,
+  lengths,
+  colors,
+  reactSelectStyles
+} from 'netlify-cms-ui-default'
 
 import { Map, List, fromJS } from 'immutable'
-import { find, findIndex } from 'lodash'
+import find from 'lodash/find'
+import findIndex from 'lodash/findIndex'
 import Select from 'react-select'
 
 function optionToString(option: any) {
   return option && option.value ? option.value : null
 }
 
-function getSelectedValue({ value, options /*isMultiple*/ }: { value: string; options: { value: string }[] }) {
+function getSelectedValue({
+  value,
+  options /*isMultiple*/
+}: {
+  value: string
+  options: { value: string }[]
+}) {
   const index = findIndex(options, ['value', value])
   const selectedValue = find(options, ['value', value])
   return index >= 0 ? { index, selectedValue } : null
@@ -30,7 +42,7 @@ const styleStrings = {
   `,
   collapsedObjectControl: `
     display: none;
-  `,
+  `
 }
 
 type ControlProps = {
@@ -58,7 +70,10 @@ type ControlProps = {
 
 export const name = 'conditional'
 
-export class ConditionalControl extends React.Component<ControlProps, { collapsed: boolean }> {
+export class ConditionalControl extends React.Component<
+  ControlProps,
+  { collapsed: boolean }
+> {
   componentValidate = {}
 
   static propTypes = {
@@ -73,20 +88,20 @@ export class ConditionalControl extends React.Component<ControlProps, { collapse
         ImmutablePropTypes.contains({
           label: PropTypes.string.isRequired,
           value: PropTypes.string.isRequired,
-          fields: ImmutablePropTypes.listOf(PropTypes.object),
+          fields: ImmutablePropTypes.listOf(PropTypes.object)
         })
-      ).isRequired,
-    }),
+      ).isRequired
+    })
   }
 
   static defaultProps = {
-    value: Map(),
+    value: Map()
   }
 
   constructor(props: any) {
     super(props)
     this.state = {
-      collapsed: props.field.get('collapsed', false),
+      collapsed: props.field.get('collapsed', false)
     }
   }
 
@@ -185,7 +200,7 @@ export class ConditionalControl extends React.Component<ControlProps, { collapse
       controlRef,
       parentIds,
       isFieldDuplicate,
-      isFieldHidden,
+      isFieldHidden
     } = this.props
 
     if (field.get('widget') === 'hidden') {
@@ -252,23 +267,26 @@ export class ConditionalControl extends React.Component<ControlProps, { collapse
                   {
                     [css`
                       ${styleStrings.nestedObjectControl}
-                    `]: forList,
+                    `]: forList
                   },
                   {
                     [css`
                       border-color: ${colors.textFieldBorder};
-                    `]: forList ? !hasError : false,
+                    `]: forList ? !hasError : false
                   }
                 )}
               >
                 {forList ? null : (
-                  <ObjectWidgetTopBar collapsed={collapsed} onCollapseToggle={this.handleCollapseToggle} />
+                  <ObjectWidgetTopBar
+                    collapsed={collapsed}
+                    onCollapseToggle={this.handleCollapseToggle}
+                  />
                 )}
                 <div
                   className={cx({
                     [css`
                       ${styleStrings.collapsedObjectControl}
-                    `]: collapsed,
+                    `]: collapsed
                   })}
                 >
                   {this.renderFields(multiFields, singleField)}
@@ -284,7 +302,14 @@ export class ConditionalControl extends React.Component<ControlProps, { collapse
   }
 
   render() {
-    const { field, value: objectValue, forID, classNameWrapper, setActiveStyle, setInactiveStyle } = this.props
+    const {
+      field,
+      value: objectValue,
+      forID,
+      classNameWrapper,
+      setActiveStyle,
+      setInactiveStyle
+    } = this.props
     const fieldOptions = field.get('options')
     const isMultiple = false //field.get("multiple", false)
     const isClearable = !field.get('required', true) || isMultiple
@@ -293,37 +318,46 @@ export class ConditionalControl extends React.Component<ControlProps, { collapse
     const value = objectValue.get(keyName)
 
     if (!fieldOptions) {
-      return <div>Error rendering select control for {field.get('name')}: No options</div>
+      return (
+        <div>
+          Error rendering select control for {field.get('name')}: No options
+        </div>
+      )
     }
 
-    const options = [
-      ...fieldOptions.map((value: any) => {
-        const option = Map.isMap(value) ? value.toJS() : value
-        return option
-      }),
-    ]
+    const options: any[] = []
+
+    fieldOptions?.forEach?.((value: any) => {
+      const option = Map.isMap(value) ? value.toJS() : value
+      console.log(option)
+      options.push(option)
+    })
 
     const selected = getSelectedValue({
       options,
-      value,
+      value
     })
 
-    const selectedFields = selected ? field.get('options').get(selected.index) : null
+    const selectedFields = selected
+      ? field.get('options').get(selected.index)
+      : null
 
     return (
       <React.Fragment>
         <Select
-          inputId={forID}
-          value={selected?.selectedValue}
-          onChange={this.handleChange}
-          className={classNameWrapper}
-          onFocus={setActiveStyle}
-          onBlur={setInactiveStyle}
-          options={options}
-          styles={reactSelectStyles}
-          isMulti={isMultiple}
-          isClearable={isClearable}
-          placeholder=''
+          {...{
+            inputId: forID,
+            value: selected?.selectedValue,
+            onChange: this.handleChange,
+            className: classNameWrapper,
+            onFocus: setActiveStyle,
+            onBlur: setInactiveStyle,
+            options,
+            styles: reactSelectStyles,
+            isMulti: isMultiple,
+            isClearable,
+            placeholder: ''
+          }}
         />
         {selectedFields && this.renderSelectedOption(selectedFields)}
       </React.Fragment>

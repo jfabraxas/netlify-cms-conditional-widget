@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@nrwl/react/babel",
+      {
+        "runtime": "automatic",
+        "useBuiltIns": "usage",
+        "importSource": "@emotion/core"
+      }
+    ]
+  ],
+  "plugins": [
+    "@emotion/babel-plugin"
+    // "transform-export-extensions",
+    // "transform-class-properties",
+    // "transform-object-rest-spread"
+  ]
+}

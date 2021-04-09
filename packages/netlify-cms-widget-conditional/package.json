@@ -1,0 +1,22 @@
+{
+  "name": "netlify-cms-widget-conditional",
+  "description": "Widget for conditional fields in Netlify CMS.",
+  "version": "0.0.1",
+  "author": "jfa <git@jonathanallenberg.de>",
+  "sideEffects": false,
+  "keywords": [
+    "netlify",
+    "netlify-cms",
+    "widget",
+    "conditional"
+  ],
+  "peerDependencies": {
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "netlify-cms-ui-default": "^2.12.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-select": "^2"
+  }
+}

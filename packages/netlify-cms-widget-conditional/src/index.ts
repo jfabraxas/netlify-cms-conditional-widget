@@ -15,4 +15,5 @@ export const NetlifyCmsWidgetObject = {
   controlComponent: ConditionalControl,
   previewComponent: ConditionPreview,
 }
+
 export default NetlifyCmsWidgetObject
