@@ -10,16 +10,21 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "netlify-cms-widget-conditional": [
-        "dist/packages/netlify-cms-widget-conditional"
-        // "packages/netlify-cms-widget-conditional/src/index.ts"
+        "packages/netlify-cms-widget-conditional/src/index.ts"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
